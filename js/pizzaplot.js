@@ -14,7 +14,13 @@ var waitForFinalEvent = (function () {
 	};
 })();
 
-
+/*
+ * Pizza Plot - v0.1.0 - 2015-01-16
+ * https://github.com/JonCatmull/PizzaPlot
+ *
+ * Copyright (c) 2015 Jonathan Catmull
+ * Licensed under the MIT license.
+ */
 (function ($) {
 	$.fn.PizzaPlot = function (custom) {
 
