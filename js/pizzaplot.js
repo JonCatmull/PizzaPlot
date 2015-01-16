@@ -33,6 +33,7 @@ var waitForFinalEvent = (function () {
 			responsive : true,
 			delay: 200, // delay in ms between plotting elements
 			activeClass: 'plotted',
+			onPlot : function() {},
 			debug   : false
 		};
 
@@ -154,11 +155,11 @@ var waitForFinalEvent = (function () {
 			    var rad=(angle-90)*Math.PI/180;
 			    var dx = Math.cos(rad)*settings.radius;
 			    var dy = Math.sin(rad)*settings.radius;
-			    // var xpos = ((settings.container.innerWidth()/2)+dx)-(obj.outerWidth()/2);
-			    // var ypos = ((settings.container.innerHeight()/2)+dy)-(obj.outerHeight()/2);
 			    var xpos = (settings.originX+dx)-(obj.outerWidth()/2);
 			    var ypos = (settings.originY+dy)-(obj.outerHeight()/2);
 			    
+			    settings.onPlot(obj, angle);
+
 			    obj.css({ 
 			        position: 'absolute',
 			        top: ypos+'px', left: xpos+'px'
