@@ -1,0 +1,84 @@
+*.sublime-*
+sftp-config.json
+
+#
+# Languages
+#
+
+# Sass
+.sass-cache
+
+// If the site is a sass site then the css files should be ignored
+//.css
+
+# Ruby
+Gemfile.lock
+
+# Node
+
+# Dependency directory
+# Commenting this out is preferred by some people, see
+# https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
+node_modules
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Composer
+composer.phar
+/vendor/
+
+# CSS (if using SASS)
+#*.css
+
+# Apache
+error_log
+
+# Logs
+logs
+
+
+#
+# OS
+#
+
+# OSX Global Files
+.DS_Store
+
+# Thumbnails
+._*
+
+# Windows Global Files
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+
+#
+# IDE's
+#
+
+# Netbeans Global Files
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Dreamweaver Global Files
+_notes
+dwsync.xml
