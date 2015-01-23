@@ -40,6 +40,7 @@ var waitForFinalEvent = (function () {
 			delay: 200, // delay in ms between plotting elements
 			activeClass: 'plotted',
 			onPlot : function() {},
+			afterPlot : function() {},
 			debug   : false
 		};
 
@@ -60,6 +61,7 @@ var waitForFinalEvent = (function () {
 				methods.validateOrigin();
 				settings.radius = parseInt(methods.validateRadius(settings.radius));
 
+				var count = 0;
 				$this.each(function(i,el){
 					setTimeout(function(){
 						methods.plot($(el), ((settings.angleIncrement*i)+settings.angleStart));
@@ -67,7 +69,13 @@ var waitForFinalEvent = (function () {
 							$(el).addClass(settings.activeClass);
 						}
 					},settings.delay*i);
+					count = i;
 			  	});
+
+				setTimeout(function(){
+			    	settings.afterPlot();
+				},settings.delay*(count+2));
+
 			  	settings.delay = 0;
 		  	},
 		  	validateInput: function(val,max) {
