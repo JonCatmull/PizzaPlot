@@ -1,6 +1,7 @@
 
 
-// incorporate this into plugin
+
+// required for PizzaPlot responsive feature
 var waitForFinalEvent = (function () {
 	var timers = {};
 	return function (callback, ms, uniqueId) {
@@ -44,6 +45,7 @@ var waitForFinalEvent = (function () {
 			debug   : false
 		};
 
+
 		// Merge default and user settings
 		var settings;
 
@@ -77,6 +79,7 @@ var waitForFinalEvent = (function () {
 				},settings.delay*(count+2));
 
 			  	settings.delay = 0;
+				methods.debug(settings.container);
 		  	},
 		  	validateInput: function(val,max) {
 		  		methods.debug('validate: '+val+' max: '+max);
@@ -137,7 +140,9 @@ var waitForFinalEvent = (function () {
 		  	},
 		  	validateOrigin: function() {
 				methods.debug('validate originX');
+				methods.debug('container inner width'+settings.container.innerWidth());
 				settings.originX = methods.validateInput(settings.originX,settings.container.innerWidth());
+				methods.debug(settings.originX);
 				methods.debug('validate originY');
 				settings.originY = methods.validateInput(settings.originY,settings.container.innerHeight());
 		  	},
@@ -167,17 +172,28 @@ var waitForFinalEvent = (function () {
 		  	plot: function(obj, angle) {
 
 			    var rad=(angle-90)*Math.PI/180;
-			    var dx = Math.cos(rad)*settings.radius;
-			    var dy = Math.sin(rad)*settings.radius;
-			    var xpos = (settings.originX+dx)-(obj.outerWidth()/2);
-			    var ypos = (settings.originY+dy)-(obj.outerHeight()/2);
-			    
+			    var dx = Math.round(Math.cos(rad)*settings.radius);
+			    var dy = Math.round(Math.sin(rad)*settings.radius);
+			    // var xpos = (settings.originX+dx)-(obj.outerWidth()/2);
+			    // var ypos = (settings.originY+dy)-(obj.outerHeight()/2);
+
+
 			    settings.onPlot(obj, angle);
 
-			    obj.css({ 
+			    // obj.css({
+			    //     position: 'absolute',
+			    //     top: ypos+'px', left: xpos+'px'
+			    // });
+				obj.css({
 			        position: 'absolute',
-			        top: ypos+'px', left: xpos+'px'
+			        left: (settings.originX)-(obj.outerWidth()/2)+'px',
+			        top: (settings.originY)-(obj.outerHeight()/2)+'px',
+					'-moz-transform': 'translate('+dx+'px,'+dy+'px)',
+					'-ms-transform': 'translate('+dx+'px,'+dy+'px)',
+					'-webkit-transform': 'translate('+dx+'px,'+dy+'px)',
+					'transform': 'translate('+dx+'px,'+dy+'px)'
 			    });
+
 			},
 			debug: function(message) {
 				if (settings.debug && typeof console !== 'undefined' && typeof console.debug !== 'undefined') {
@@ -202,3 +218,4 @@ var waitForFinalEvent = (function () {
 
 	};
 })(jQuery);
+
